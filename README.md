@@ -63,6 +63,13 @@
 
 ### Proje için Python Sanal Ortamın (Virtual Environment) Kurulması
 
+Not: **"locale.Error: unsupported locale setting"** hatası için çözüm:
+
+```
+  export LC_ALL=C
+```
+
+
 1. Python3 için pip güncellemesi ve `virtualenv` paketinin kurulması
 
 ```
