@@ -149,6 +149,14 @@
    }
 ```
 
+4. STATICFILES_DIR Değişkeninin Kaldırılması
 
+    **Not:** Yayın Ortamında static dosyalar STATIC_ROOT değişkeninin gösterdiği klasör referans alınarak servis edileceği için STATICFILES_DIR'ın bir anlamı olmadığından yorum satırı haline getiriyoruz veya siliyoruz.
+    
+```python
+    # STATICFILES_DIRS = [
+    #    os.path.join(BASE_DIR, "static"),
+    # ]
+```
 
 
