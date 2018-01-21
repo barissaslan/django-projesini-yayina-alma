@@ -66,7 +66,7 @@
 **Not:** *"locale.Error: unsupported locale setting"* hatası için çözüm:
 
 ```
-  export LC_ALL=C
+  export LC_ALL="en_US.UTF-8"
 ```
 
 
