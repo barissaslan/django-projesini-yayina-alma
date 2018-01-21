@@ -63,7 +63,7 @@
 
 ### Proje için Python Sanal Ortamın (Virtual Environment) Kurulması
 
-Not: **"locale.Error: unsupported locale setting"** hatası için çözüm:
+**Not:** *"locale.Error: unsupported locale setting"* hatası için çözüm:
 
 ```
   export LC_ALL=C
@@ -112,6 +112,35 @@ Not: **"locale.Error: unsupported locale setting"** hatası için çözüm:
 
 ```
   pip install gunicorn psycopg2
+```
+
+### Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) ayarları
+
+#### `setting.py` Dosyasındaki Ayarlar
+
+1. Django projesinin `setting.py` dosyasında ki ALLOWED_HOSTS (İzin verilmiş sunucular) ataması
+
+```python
+  ALLOWED_HOSTS = ['alan_adiniz_veya_IP_adresiniz', 'ikinci_alan_adiniz_veya_IP_adresiniz', . . .]
+  # Örnek:
+  ALLOWED_HOSTS = ['alanadi.com', '192.168.1.10'] # IP adresi örnek amaçlı yazılmış olup private adrestir.
+```
+
+2. Django projesinin veritabanı ayarlarını SQLite'dan PostgreSQL'e çevirme.
+
+**Not:** Aşağıdaki `'NAME'`, `'USER'`, `'PASSWORD'` alanları değişken olup, atanan değerler yukarıda ki PostgreSQL kurulumunda verilen takma adlardan alınmıştır.
+
+```python
+   DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'projeAdi',
+        'USER': 'kullaniciAdi',
+        'PASSWORD': 'Deneme123!',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+   }
 ```
 
 
