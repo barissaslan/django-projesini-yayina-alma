@@ -114,11 +114,17 @@
   pip install gunicorn psycopg2
 ```
 
-### Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) ayarları
+### Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları
 
 #### `setting.py` Dosyasındaki Ayarlar
 
-1. Django projesinin `setting.py` dosyasında ki ALLOWED_HOSTS (İzin verilmiş sunucular) ataması
+1. Django projesinin `setting.py` dosyasındaki DEBUG ifadesinin ayarlanması.
+
+```python
+  DEBUG = False # Production ortamında DEBUG kesinlikle kapatılmalıdır ki saldırganlar site hakkında detaylı hata raporlarına ulaşamasınlar. 
+```
+
+2. Django projesinin `setting.py` dosyasındaki ALLOWED_HOSTS (İzin verilmiş sunucular) ataması
 
 ```python
   ALLOWED_HOSTS = ['alan_adiniz_veya_IP_adresiniz', 'ikinci_alan_adiniz_veya_IP_adresiniz', . . .]
@@ -126,9 +132,9 @@
   ALLOWED_HOSTS = ['alanadi.com', '192.168.1.10'] # IP adresi örnek amaçlı yazılmış olup private adrestir.
 ```
 
-2. Django projesinin veritabanı ayarlarını SQLite'dan PostgreSQL'e çevirme.
+3. Django projesinin veritabanı ayarlarını SQLite'dan PostgreSQL'e çevirme.
 
-**Not:** Aşağıdaki `'NAME'`, `'USER'`, `'PASSWORD'` alanları değişken olup, atanan değerler yukarıda ki PostgreSQL kurulumunda verilen takma adlardan alınmıştır.
+    **Not:** Aşağıdaki `'NAME'`, `'USER'`, `'PASSWORD'` alanları değişken olup, atanan değerler yukarıda ki PostgreSQL kurulumunda verilen takma adlardan alınmıştır.
 
 ```python
    DATABASES = {
