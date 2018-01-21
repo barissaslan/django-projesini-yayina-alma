@@ -1,6 +1,18 @@
 # django-deployment-tutorial
+
+## Kullanıcı Ayarları
+
+1. Kullanıcı Oluşturma
+
+```
+   adduser kullaniciAdi
+```
    
-## Yüklemeler
+2. Oluşturulan yeni kullanıcıya sudo (yönetici) yetkisi verme
+
+```
+   usermod -aG sudo kullaniciAdi
+```
 
 ### Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi
 
