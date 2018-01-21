@@ -137,7 +137,7 @@
     **Not:** Aşağıdaki `'NAME'`, `'USER'`, `'PASSWORD'` alanları değişken olup, atanan değerler yukarıda ki PostgreSQL kurulumunda verilen takma adlardan alınmıştır.
 
 ```python
-   DATABASES = {
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'projeAdi',
@@ -146,7 +146,7 @@
         'HOST': 'localhost',
         'PORT': '',
     }
-   }
+}
 ```
 
 4. STATICFILES_DIR Değişkeninin Kaldırılması
