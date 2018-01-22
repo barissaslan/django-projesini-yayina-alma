@@ -186,4 +186,100 @@ DATABASES = {
 
 3. Tarayıcıdan test etme
 
-http://alan00
+http://alan_adi_veya_IP:8000
+
+
+### Gunicorn
+
+1. Projeyi Gunicorn ile Çalıştırarak Gunicorn'u Test Etmek 
+
+```
+   # Sanal ortam aktif olmalı ve manage.py dizininde çalıştırılmalı. blog.wsgi -> uygulama klasörünün adı.
+   gunicorn --bind 0.0.0.0:8000 blog.wsgi
+```
+
+Tarayıcıdan test etme: http://alan_adi_veya_IP:8000
+
+2. Gunicorn `systemd` Servis Dosyası Oluşturma
+
+```
+   # Sanal ortamdan çıkılmalı
+   deactivate
+   
+   # Servis dosyası oluşturma
+   sudo nano /etc/systemd/system/gunicorn.service
+```
+
+gunicorn.service dosya içeriği şu şekilde olmalıdır:
+
+```
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=kullanıcı_adı
+Group=www-data
+WorkingDirectory=/home/kullanıcı_adı/proje_adı
+ExecStart=/home/kullanıcı_adı/proje_adı/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/kullanıcı_adı/proje_adı/proje_adı.sock proje_adı.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+```
+
+**Not:** Sanal ortamın adı `venv` olarak varsayılmıştır. `proje_adı` ve `kullanıcı_adı` adı bölümüne kendi değerlerinizi girmelisiniz.
+
+3. Gunicorn servisini aktif etme:
+
+```
+   sudo systemctl start gunicorn
+   sudo systemctl enable gunicorn
+```
+
+4. Gunicorn servisinin doğru bir şekilde çalışıp çalışmadığını test etme:
+
+```
+   sudo systemctl status gunicorn
+   # Yeşil renkte "active (running)" yazıyorsa başarılı bir şekilde çalışıyor demektir.
+```
+
+```
+   ls /home/kullanıcı_adı/proje_adı
+   # ls çıktısında "proje_adı.sock" adlı (.sock) uzantılı bir soket dosyası görülüyorsa gunicorn başarılı bir şekilde yapılandırılmıştır.
+```
+
+### Nginx Yapılandırması
+
+1. Nginx sunucu bloğu açma:
+
+```sudo nano /etc/nginx/sites-available/proje_adı```
+
+   Dosyanın içinde bulunması gerekenler:
+
+```
+   server {
+       listen 80;
+     server_name alan_adi_veya_IP;
+
+     location = /favicon.ico { access_log off; log_not_found off; }
+    
+     location /static/ {
+         root /home/kullanıcı_adı/proje_adı;
+     }
+
+     location / {
+          include proxy_params;
+          proxy_pass http://unix:/home/kullanıcı_adı/proje_adı/proje_adı.sock;
+      }
+   }
+```
+
+
+
+
+
+
+
+
+
+
