@@ -5,13 +5,13 @@
 1. Kullanıcı Oluşturma
 
 ```
-   adduser kullaniciAdi
+   adduser kullanici_adi
 ```
    
 2. Oluşturulan yeni kullanıcıya sudo (yönetici) yetkisi verme
 
 ```
-   usermod -aG sudo kullaniciAdi
+   usermod -aG sudo kullanici_adi
 ```
 
 ### Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi
@@ -32,27 +32,27 @@
 2. Projenin kullanacağı veritabanını oluşturma
 
 ```sql
-  CREATE DATABASE projeAdi;
+  CREATE DATABASE proje_adi;
 ```
 
 3. Projenin kullanacağı veritabanı kullanıcısını oluşturma
 
 ```sql
-  CREATE USER kullaniciAdi WITH PASSWORD 'parola123';
+  CREATE USER kullanici_adi WITH PASSWORD 'parola123';
 ```
 
 4. Varsayılan karakter kodlaması (default character encoding), işlem (transaction) ve bölgesel zaman ile ilgili ayarların yapılması
 
 ```sql
-  ALTER ROLE kullaniciAdi SET client_encoding TO 'utf8';
-  ALTER ROLE kullaniciAdi SET default_transaction_isolation TO 'read committed';
-  ALTER ROLE kullaniciAdi SET timezone TO 'Europe/Istanbul';
+  ALTER ROLE kullanici_adi SET client_encoding TO 'utf8';
+  ALTER ROLE kullanici_adi SET default_transaction_isolation TO 'read committed';
+  ALTER ROLE kullanici_adi SET timezone TO 'Europe/Istanbul';
 ```
 
 5. Oluşturulan kullanıcıyı veritabanına yönetici erişimi izni verme
 
 ```sql
-  GRANT ALL PRIVILEGES ON DATABASE projeAdi TO kullaniciAdi;
+  GRANT ALL PRIVILEGES ON DATABASE proje_adi TO kullanici_adi;
 ```
 
 6. PostgreSQL komut istemcisinden çıkmak
@@ -133,8 +133,8 @@
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'projeAdi',
-        'USER': 'kullaniciAdi',
+        'NAME': 'proje_adi',
+        'USER': 'kullanici_adi',
         'PASSWORD': 'parola123',
         'HOST': 'localhost',
         'PORT': '',
