@@ -79,35 +79,29 @@
 2. Örnek bir Django projesi GitHub'dan kopyalanıyor.
 
 ```
-  git clone https://github.com/barissaslan/django-dersleri.git
+  git clone https://github.com/barissaslan/eventhub.git
 ```
 
-3. Proje klasörünün adının değiştirilmesi ve proje dizinine geçme
+3. Proje dizinine geçme ve `venv` adlı Sanal Python Ortamının oluşturulması
 
 ```
-  mv django-dersleri blog
   cd blog
-```
-
-4. Proje için `venv` adlı Sanal Python Ortamının oluşturulması
-
-```
   virtualenv venv
 ```
 
-5. Sanal Ortamın aktif edilmesi
+4. Sanal Ortamın aktif edilmesi
 
 ```
   source venv/bin/activate
 ```
 
-6. Proje bağımlılıklarının yüklenmesi
+5. Proje bağımlılıklarının yüklenmesi
 
 ```
   pip install -r requirements.txt
 ```
 
-7. Gunicorn ve PostgreSQL adaptörünün yüklenmesi
+6. Gunicorn ve PostgreSQL adaptörünün yüklenmesi
 
 ```
   pip install gunicorn psycopg2
