@@ -157,7 +157,7 @@ DATABASES = {
     #    os.path.join(BASE_DIR, "static"),
     # ]
     
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static') # "staticfiles" yerine "static" yazıldı.
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 ```
 
 5. Veritabanı şemasını oluşturma ve statik dosyaları toplama
@@ -232,6 +232,7 @@ WantedBy=multi-user.target
 ```
 
 **Not:** Sanal ortamın adı `venv`, projenin adı `eventhub`, kullanıcı adı `baris` olarak varsayılmıştır.
+**Not 2:** Dosyayı kaydetmek için `CTRL + X` yaptıktan sonra `y` harfine basıp, `enter` tuşuna basılmalı.
 
 3. Gunicorn servisini aktif etme:
 
@@ -281,7 +282,7 @@ WantedBy=multi-user.target
    }
 ```
 
-**Not:** Dosyayı kaydetmek için `CTRL + X` yaptıktan sonra `y` harfine basılıp, enter'a basılmalı.
+**Not:** Dosyayı kaydetmek için `CTRL + X` yaptıktan sonra `y` harfine basıp, `enter` tuşuna basılmalı.
 
 2. Nginx dosyasını aktif etmek için dosyayı **`sites-enabled`** dizinine link olarak verme
 
