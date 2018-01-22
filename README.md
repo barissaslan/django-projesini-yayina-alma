@@ -161,4 +161,13 @@ DATABASES = {
     STATIC_ROOT = os.path.join(BASE_DIR, 'static') # "staticfiles" yerine "static" yazıldı.
 ```
 
+5. Veritabanı şemasını oluşturma ve statik dosyaları toplama
+
+```
+   python manage.py makemigrations
+   python manage.py migrate
+   python manage.py createsuperuser
+   python manage.py collectstatic
+```
+
 
