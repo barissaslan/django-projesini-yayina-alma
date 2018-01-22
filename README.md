@@ -149,14 +149,16 @@ DATABASES = {
 }
 ```
 
-4. STATICFILES_DIR Değişkeninin Kaldırılması
+4. STATICFILES_DIR Değişkeninin Kaldırılması ve STATIS_ROOT değişkeninin düzenlenmesi
 
-    **Not:** Yayın Ortamında static dosyalar STATIC_ROOT değişkeninin gösterdiği klasör referans alınarak servis edileceği için STATICFILES_DIR'ın bir anlamı olmadığından yorum satırı haline getiriyoruz veya siliyoruz.
+    **Not:** Yayın Ortamında static dosyalar STATIC_ROOT değişkeninin gösterdiği klasör referans alınarak servis edileceği için STATICFILES_DIR'ın bir anlamı olmadığından yorum satırı haline getiriyoruz veya siliyoruz. Projemizde STATIC_ROOT değişkeni "static" klasörünü göstermelidir.
     
 ```python
     # STATICFILES_DIRS = [
     #    os.path.join(BASE_DIR, "static"),
     # ]
+    
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static') # "staticfiles" yerine "static" yazıldı.
 ```
 
 
