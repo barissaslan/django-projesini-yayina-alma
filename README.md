@@ -275,6 +275,32 @@ WantedBy=multi-user.target
    }
 ```
 
+**Not:** Dosyayı kaydetmek için `CTRL + X` yaptıktan sonra `y` harfine basılıp, enter'a basılmalı.
+
+2. Nginx dosyasını aktif etmek için dosyayı **`sites-enabled`** dizinine link olarak verme
+
+```
+   sudo ln -s /etc/nginx/sites-available/eventhub /etc/nginx/sites-enabled
+```
+
+3. Nginx yapılandırma dosyalarında *syntax* hatası olup olmadığını kontrol etme
+
+```
+   sudo nginx -t
+```
+
+4. Hata yoksa Nginx sunucusunu yeniden başlatma
+
+```
+   sudo systemctl restart nginx
+```
+
+5. Kullanılmayacak olan 8000 portunu kapatma ve Nginx kurallarını aktif etme
+
+```
+   sudo ufw delete allow 8000
+   sudo ufw allow 'Nginx Full
+```
 
 
 
