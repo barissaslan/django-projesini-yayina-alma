@@ -63,18 +63,17 @@
 
 ### Proje için Python Sanal Ortamın (Virtual Environment) Kurulması
 
-**Not:** *"locale.Error: unsupported locale setting"* hatası için çözüm:
-
-```
-  export LC_ALL="en_US.UTF-8"
-```
-
-
 1. Python3 için pip güncellemesi ve `virtualenv` paketinin kurulması
 
 ```
   sudo -H pip3 install --upgrade pip
   sudo -H pip3 install virtualenv
+```
+
+**Not:** *"locale.Error: unsupported locale setting"* hatası için çözüm:
+
+```
+  export LC_ALL="en_US.UTF-8"
 ```
 
 2. Örnek bir Django projesi GitHub'dan kopyalanıyor.
