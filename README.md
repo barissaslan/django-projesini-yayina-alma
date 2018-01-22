@@ -85,7 +85,7 @@
 3. Proje dizinine geçme ve `venv` adlı Sanal Python Ortamının oluşturulması
 
 ```
-  cd blog
+  cd eventhub
   virtualenv venv
 ```
 
@@ -190,8 +190,8 @@ DATABASES = {
 1. Projeyi Gunicorn ile Çalıştırarak Gunicorn'u Test Etmek 
 
 ```
-   # Sanal ortam aktif olmalı ve manage.py dizininde çalıştırılmalı. blog.wsgi -> proje klasörünün adı.
-   gunicorn --bind 0.0.0.0:8000 blog.wsgi
+   # Sanal ortam aktif olmalı ve manage.py dizininde çalıştırılfmalı. eventhub.wsgi -> proje klasörünün adı.
+   gunicorn --bind 0.0.0.0:8000 eventhub.wsgi
 ```
 
 Tarayıcıdan test etme: http://alan_adi_veya_IP:8000
@@ -216,14 +216,14 @@ After=network.target
 [Service]
 User=baris
 Group=www-data
-WorkingDirectory=/home/baris/blog
-ExecStart=/home/baris/blog/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/baris/blog/blog.sock blog.wsgi:application
+WorkingDirectory=/home/baris/eventhub
+ExecStart=/home/baris/eventhub/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/baris/eventhub/eventhub.sock eventhub.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-**Not:** Sanal ortamın adı `venv`, projenin adı `blog`, kullanıcı adı `baris` olarak varsayılmıştır.
+**Not:** Sanal ortamın adı `venv`, projenin adı `eventhub`, kullanıcı adı `baris` olarak varsayılmıştır.
 
 3. Gunicorn servisini aktif etme:
 
@@ -240,7 +240,7 @@ WantedBy=multi-user.target
 ```
 
 ```
-   ls /home/baris/blog
+   ls /home/baris/eventhub
    # ls çıktısında "proje_adı.sock" adlı (.sock) uzantılı bir soket dosyası görülüyorsa gunicorn başarılı bir şekilde yapılandırılmıştır.
 ```
 
@@ -249,7 +249,7 @@ WantedBy=multi-user.target
 1. Nginx sunucu bloğu açma:
 
 ```
-   sudo nano /etc/nginx/sites-available/blog
+   sudo nano /etc/nginx/sites-available/eventhub
 ```
 
    **Dosyanın içinde bulunması gerekenler:**
@@ -258,7 +258,7 @@ WantedBy=multi-user.target
    server {
        listen 80;
        server_name alan_adi_veya_IP;
-       root /home/baris/blog;
+       root /home/baris/eventhub;
 
        location /static/ {
        }
@@ -268,7 +268,7 @@ WantedBy=multi-user.target
 
        location / {
           include proxy_params;
-          proxy_pass http://unix:/home/baris/blog/blog.sock;
+          proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
        }
    }
 ```
