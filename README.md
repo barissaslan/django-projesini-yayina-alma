@@ -1,4 +1,10 @@
-# django-deployment-tutorial
+# Django Projesini Yayına Alma
+
+[YouTube kanalımdaki](https://www.youtube.com/channel/UC5bnqsX71d-eKCHhNvM2U6g) **[Django Uygulamasını Yayına Alma](https://www.youtube.com/watch?v=uwVmWS1yJ1k&list=PLPrHLaayVkhny4WRNp05C1qRl1Aq3Wswh)** adlı video ders serisi için dökümantasyon. 
+
+Kullanılan teknolojiler : **Nginx, Gunicorn, PostgreSQL**
+
+Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
 ## Kullanıcı Ayarları
 
