@@ -196,6 +196,8 @@ DATABASES = {
 
 Tarayıcıdan test etme: http://alan_adi_veya_IP:8000
 
+Gunicorn sunucusunu durduma: `CTRL + C`
+
 2. Gunicorn `systemd` Servis Dosyası Oluşturma
 
 ```
