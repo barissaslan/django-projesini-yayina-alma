@@ -262,19 +262,22 @@ WantedBy=multi-user.target
 
 ```
    server {
-     listen 80;
-     server_name alan_adi_veya_IP;
+       listen 80;
+       server_name alan_adi_veya_IP;
+       root /home/baris/blog;
 
-     location = /favicon.ico { access_log off; log_not_found off; }
-    
-     location /static/ {
-         root /home/baris/blog;
-     }
+       location /static/ {
 
-     location / {
+       }
+
+       location /media/ {
+
+       }
+
+       location / {
           include proxy_params;
           proxy_pass http://unix:/home/baris/blog/blog.sock;
-      }
+       }
    }
 ```
 
