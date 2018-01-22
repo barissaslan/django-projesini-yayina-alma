@@ -38,7 +38,7 @@
 3. Projenin kullanacağı veritabanı kullanıcısını oluşturma
 
 ```sql
-  CREATE USER kullaniciAdi WITH PASSWORD 'parola';
+  CREATE USER kullaniciAdi WITH PASSWORD 'parola123';
 ```
 
 4. Varsayılan karakter kodlaması (default character encoding), işlem (transaction) ve bölgesel zaman ile ilgili ayarların yapılması
@@ -117,7 +117,7 @@
 
 #### `setting.py` Dosyasındaki Ayarlar
 
-1. Django projesinin `setting.py` dosyasındaki DEBUG ifadesinin ayarlanması.
+1. Django projesinin `setting.py` dosyasındaki DEBUG ifadesinin `False` olarak ayarlanması.
 
 ```python
   DEBUG = False # Production ortamında DEBUG kesinlikle kapatılmalıdır ki saldırganlar site hakkında detaylı hata raporlarına ulaşamasınlar. 
@@ -141,7 +141,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'projeAdi',
         'USER': 'kullaniciAdi',
-        'PASSWORD': 'parola',
+        'PASSWORD': 'parola123',
         'HOST': 'localhost',
         'PORT': '',
     }
@@ -186,7 +186,9 @@ DATABASES = {
 
 3. Tarayıcıdan test etme
 
-http://alan_adi_veya_IP:8000
+```
+   http://alan_adi_veya_IP:8000
+```
 
 
 ### Gunicorn
@@ -194,7 +196,7 @@ http://alan_adi_veya_IP:8000
 1. Projeyi Gunicorn ile Çalıştırarak Gunicorn'u Test Etmek 
 
 ```
-   # Sanal ortam aktif olmalı ve manage.py dizininde çalıştırılmalı. blog.wsgi -> uygulama klasörünün adı.
+   # Sanal ortam aktif olmalı ve manage.py dizininde çalıştırılmalı. blog.wsgi -> proje klasörünün adı.
    gunicorn --bind 0.0.0.0:8000 blog.wsgi
 ```
 
@@ -218,16 +220,16 @@ Description=gunicorn daemon
 After=network.target
 
 [Service]
-User=kullanıcı_adı
+User=baris
 Group=www-data
-WorkingDirectory=/home/kullanıcı_adı/proje_adı
-ExecStart=/home/kullanıcı_adı/proje_adı/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/kullanıcı_adı/proje_adı/proje_adı.sock proje_adı.wsgi:application
+WorkingDirectory=/home/baris/blog
+ExecStart=/home/baris/blog/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/baris/blog/blog.sock blog.wsgi:application
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-**Not:** Sanal ortamın adı `venv` olarak varsayılmıştır. `proje_adı` ve `kullanıcı_adı` adı bölümüne kendi değerlerinizi girmelisiniz.
+**Not:** Sanal ortamın adı `venv`, projenin adı `blog`, kullanıcı adı `baris` olarak varsayılmıştır.
 
 3. Gunicorn servisini aktif etme:
 
@@ -244,7 +246,7 @@ WantedBy=multi-user.target
 ```
 
 ```
-   ls /home/kullanıcı_adı/proje_adı
+   ls /home/baris/blog
    # ls çıktısında "proje_adı.sock" adlı (.sock) uzantılı bir soket dosyası görülüyorsa gunicorn başarılı bir şekilde yapılandırılmıştır.
 ```
 
@@ -252,24 +254,26 @@ WantedBy=multi-user.target
 
 1. Nginx sunucu bloğu açma:
 
-```sudo nano /etc/nginx/sites-available/proje_adı```
+```
+   sudo nano /etc/nginx/sites-available/blog
+```
 
-   Dosyanın içinde bulunması gerekenler:
+   **Dosyanın içinde bulunması gerekenler:**
 
 ```
    server {
-       listen 80;
+     listen 80;
      server_name alan_adi_veya_IP;
 
      location = /favicon.ico { access_log off; log_not_found off; }
     
      location /static/ {
-         root /home/kullanıcı_adı/proje_adı;
+         root /home/baris/blog;
      }
 
      location / {
           include proxy_params;
-          proxy_pass http://unix:/home/kullanıcı_adı/proje_adı/proje_adı.sock;
+          proxy_pass http://unix:/home/baris/blog/blog.sock;
       }
    }
 ```
