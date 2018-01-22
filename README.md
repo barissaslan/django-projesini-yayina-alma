@@ -267,11 +267,9 @@ WantedBy=multi-user.target
        root /home/baris/blog;
 
        location /static/ {
-
        }
 
        location /media/ {
-
        }
 
        location / {
