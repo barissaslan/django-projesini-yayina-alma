@@ -169,4 +169,21 @@ DATABASES = {
    python manage.py collectstatic
 ```
 
+### Projeyi Django'nun Geliştirme Sunucusuyla Test Etme
 
+1. Test edilecek 8000 portunu aktif etme
+
+```
+   sudo ufw allow 8000
+```
+
+2. Geliştirme sunucusunu çalıştırma
+
+```
+   # 0.0.0.0 -> sunucunun IP adresi. (sunucu kendi IP adresini bildiğinden 0.0.0.0 yazılabilir)
+   python manage.py runserver 0.0.0.0:8000
+```
+
+3. Tarayıcıdan test etme
+
+http://alan00
