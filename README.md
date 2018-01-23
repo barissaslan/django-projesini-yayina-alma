@@ -17,6 +17,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 - [Gunicorn](#gunicorn)
 - [Nginx Yapılandırması](#nginx-yapılandırması)
 
+
 ## [Linux Kullanıcı Oluşturma](#linux)
 
 1. Kullanıcı Oluşturma
