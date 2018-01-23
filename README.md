@@ -2,6 +2,10 @@
 
 [YouTube kanalımdaki](https://www.youtube.com/channel/UC5bnqsX71d-eKCHhNvM2U6g) **[Django Uygulamasını Yayına Alma](https://www.youtube.com/watch?v=uwVmWS1yJ1k&list=PLPrHLaayVkhny4WRNp05C1qRl1Aq3Wswh)** adlı video ders serisi için dökümantasyon. 
 
+Kullanılan teknolojiler : **Ubuntu 16.04, Nginx, Gunicorn, PostgreSQL**
+
+Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
+
 İçindekiler
 
 - [Linux Kullanıcı Oluşturma](#linux-kullanıcı-oluşturma)
@@ -13,11 +17,7 @@
 - [Gunicorn](#gunicorn)
 - [Nginx Yapılandırması](#nginx-yapılandırması)
 
-Kullanılan teknolojiler : **Ubuntu 16.04 üzerinde Nginx, Gunicorn, PostgreSQL**
-
-Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
-
-## Linux Kullanıcı Oluşturma
+## [Linux Kullanıcı Oluşturma](#linux)
 
 1. Kullanıcı Oluşturma
 
@@ -31,14 +31,14 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
    usermod -aG sudo kullanici_adi
 ```
 
-### Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi
+### [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](#kurulum)
 
 ```
   sudo apt-get update
   sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
 ```
 
-### PostgreSQL Yapılandırması
+### [PostgreSQL Yapılandırması](#postgresql)
 
 1. İnteraktif PostgreSQL komut istemcisine bağlanma
 
