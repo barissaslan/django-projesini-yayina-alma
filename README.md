@@ -208,7 +208,7 @@ DATABASES = {
 1. Projeyi Gunicorn ile Çalıştırarak Gunicorn'u Test Etmek 
 
 ```
-   # Sanal ortam aktif olmalı ve manage.py dizininde çalıştırılfmalı. eventhub.wsgi -> proje klasörünün adı.
+   # Sanal ortam aktif olmalı ve manage.py dizininde çalıştırılmalı. (eventhub.wsgi -> proje_adı.wsgi)
    gunicorn --bind 0.0.0.0:8000 eventhub.wsgi
 ```
 
@@ -244,6 +244,7 @@ WantedBy=multi-user.target
 ```
 
 **Not:** Sanal ortamın adı `venv`, projenin adı `eventhub`, kullanıcı adı `baris` olarak varsayılmıştır.
+
 **Not 2:** Dosyayı kaydetmek için `CTRL + X` yaptıktan sonra `y` harfine basıp, `enter` tuşuna basılmalı.
 
 3. Gunicorn servisini aktif etme:
@@ -320,12 +321,6 @@ WantedBy=multi-user.target
    sudo ufw delete allow 8000
    sudo ufw allow 'Nginx Full
 ```
-
-
-
-
-
-
 
 
 
