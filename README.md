@@ -322,5 +322,5 @@ WantedBy=multi-user.target
    sudo ufw allow 'Nginx Full
 ```
 
-**KAYNAK: ** https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
+**Kaynak:** https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
 
