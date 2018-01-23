@@ -2,6 +2,12 @@
 
 [YouTube kanalımdaki](https://www.youtube.com/channel/UC5bnqsX71d-eKCHhNvM2U6g) **[Django Uygulamasını Yayına Alma](https://www.youtube.com/watch?v=uwVmWS1yJ1k&list=PLPrHLaayVkhny4WRNp05C1qRl1Aq3Wswh)** adlı video ders serisi için dökümantasyon. 
 
+İçindekiler
+
+[Foo](#virtualenv)
+
+
+
 Kullanılan teknolojiler : **Ubuntu 16.04 üzerinde Nginx, Gunicorn, PostgreSQL**
 
 Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
