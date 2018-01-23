@@ -35,7 +35,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
   sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
 ```
 
-### [PostgreSQL Yapılandırması](#postgresql-yapilandirma)
+### PostgreSQL Yapılandırması
 
 1. İnteraktif PostgreSQL komut istemcisine bağlanma
 
