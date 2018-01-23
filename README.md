@@ -4,18 +4,14 @@
 
 İçindekiler
 
-[Linux Kullanıcı İşlemleri](#linux-kullanıcı-işlemleri)
-[Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](python3,-postgresql-ve-nginx-bileşenlerinin-yüklenmesi)
-[PostgreSQL Yapılandırması](#postgresql-yapılandırması)
-[Proje için Python Sanal Ortamın (Virtual Environment) ve Bağımlılıkların Yüklenmesi](#proje-için-python-sanal-ortamın-(virtual-environment)-ve-bağımlılıkların-yüklenmesi)
-[Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#django-uygulamasıyla-ilgili-yayın-ortamı-(production-environment)-ayarları)
-[Projeyi Django'nun Geliştirme Sunucusuyla Test Etme](#projeyi-django'nun-geliştirme-sunucusuyla-test-etme)
-[Gunicorn](#gunicorn)
-[Nginx Yapılandırması](#nginx-yapılandırması)
-
-[Foo 2](#postgresql-yapılandırması)
-
-
+- [Linux Kullanıcı İşlemleri](#linux-kullanıcı-işlemleri)
+- [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](python3,-postgresql-ve-nginx-bileşenlerinin-yüklenmesi)
+- [PostgreSQL Yapılandırması](#postgresql-yapılandırması)
+- [Proje için Python Sanal Ortamın (Virtual Environment) ve Bağımlılıkların Yüklenmesi](#proje-için-python-sanal-ortamın-(virtual-environment)-ve-bağımlılıkların-yüklenmesi)
+- [Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#django-uygulamasıyla-ilgili-yayın-ortamı-(production-environment)-ayarları)
+- [Projeyi Django'nun Geliştirme Sunucusuyla Test Etme](#projeyi-django'nun-geliştirme-sunucusuyla-test-etme)
+- [Gunicorn](#gunicorn)
+- [Nginx Yapılandırması](#nginx-yapılandırması)
 
 Kullanılan teknolojiler : **Ubuntu 16.04 üzerinde Nginx, Gunicorn, PostgreSQL**
 
