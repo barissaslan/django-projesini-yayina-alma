@@ -2,11 +2,11 @@
 
 [YouTube kanalımdaki](https://www.youtube.com/channel/UC5bnqsX71d-eKCHhNvM2U6g) **[Django Uygulamasını Yayına Alma](https://www.youtube.com/watch?v=uwVmWS1yJ1k&list=PLPrHLaayVkhny4WRNp05C1qRl1Aq3Wswh)** adlı video ders serisi için dökümantasyon. 
 
-Kullanılan teknolojiler : **Nginx, Gunicorn, PostgreSQL**
+Kullanılan teknolojiler : **Ubuntu 16.04 üzerinde Nginx, Gunicorn, PostgreSQL**
 
 Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
-## Kullanıcı Ayarları
+## [Linux Kullanıcı İşlemleri](#linux)
 
 1. Kullanıcı Oluşturma
 
@@ -20,14 +20,14 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
    usermod -aG sudo kullanici_adi
 ```
 
-### Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi
+### [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](#python-kurulum)
 
 ```
   sudo apt-get update
   sudo apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx
 ```
 
-### PostgreSQL Yapılandırması
+### [PostgreSQL Yapılandırması](#postgresql-yapilandirma)
 
 1. İnteraktif PostgreSQL komut istemcisine bağlanma
 
@@ -67,7 +67,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
   \q
 ```
 
-### Proje için Python Sanal Ortamın (Virtual Environment) Kurulması
+### [Proje için Python Sanal Ortamın (Virtual Environment) ve Bağımlılıkların Yüklenmesi](#virtualenv)
 
 1. Python3 için pip güncellemesi ve `virtualenv` paketinin kurulması
 
@@ -113,7 +113,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
   pip install gunicorn psycopg2
 ```
 
-### Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları
+### [Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#production)
 
 #### `setting.py` Dosyasındaki Ayarlar
 
@@ -133,7 +133,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
 3. Django projesinin veritabanı ayarlarını SQLite'dan PostgreSQL'e çevirme.
 
-    **Not:** Aşağıdaki `'NAME'`, `'USER'`, `'PASSWORD'` alanları değişken olup, atanan değerler yukarıda ki PostgreSQL kurulumunda verilen takma adlardan alınmıştır.
+    **Not:** Aşağıdaki `'NAME'`, `'USER'`, `'PASSWORD'` alanları değişken olup, atanan değerler yukarıda ki PostgreSQL Yapılandırması'nda verilen takma adlardan alınmıştır.
 
 ```python
 DATABASES = {
@@ -169,7 +169,7 @@ DATABASES = {
    python manage.py collectstatic
 ```
 
-### Projeyi Django'nun Geliştirme Sunucusuyla Test Etme
+### [Projeyi Django'nun Geliştirme Sunucusuyla Test Etme](#dev-server)
 
 1. Test edilecek 8000 portunu aktif etme
 
@@ -191,7 +191,7 @@ DATABASES = {
 ```
 
 
-### Gunicorn
+### [Gunicorn](#gunicorn)
 
 1. Projeyi Gunicorn ile Çalıştırarak Gunicorn'u Test Etmek 
 
@@ -253,7 +253,7 @@ WantedBy=multi-user.target
    # ls çıktısında "proje_adı.sock" adlı (.sock) uzantılı bir soket dosyası görülüyorsa gunicorn başarılı bir şekilde yapılandırılmıştır.
 ```
 
-### Nginx Yapılandırması
+### [Nginx Yapılandırması](#nginx)
 
 1. Nginx sunucu bloğu açma:
 
