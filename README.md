@@ -4,7 +4,9 @@
 
 İçindekiler
 
-[Foo](#virtualenv)
+[Foo](#postgresql-yapilandirmasi)
+
+[Foo 2](#postgresql-yapılandırması)
 
 
 
