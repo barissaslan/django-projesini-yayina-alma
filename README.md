@@ -17,6 +17,8 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 - [Gunicorn](#gunicorn)
 - [Nginx Yapılandırması](#nginx-yapılandırması)
 
+- [SSL Sertifakası Temin Etme](#ssl-sertifikası-temin-etme)
+
 
 ## [Linux Kullanıcı Oluşturma](#linux)
 
@@ -30,6 +32,26 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
 ```
    usermod -aG sudo kullanici_adi
+```
+
+### Temel Güvenlik Duvarı Ayarları
+
+1. Güvenlik duvarında SSH'a izin verme
+
+```
+   sudo ufw allow OpenSSH
+```
+
+2. Güvenlik duvarı kurallarını aktif etme.
+
+```
+   sudo ufw enable
+```
+
+3. Güvenlik duvarı kurallarını listeleme
+
+```
+   sudo ufw status
 ```
 
 ### [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](#kurulum)
@@ -320,6 +342,63 @@ WantedBy=multi-user.target
 ```
    sudo ufw delete allow 8000
    sudo ufw allow 'Nginx Full
+```
+
+### [SSL Sertifikası Temin Etme](#ssl)
+
+1. Gerekli işlemleri otomatize edecek Certbot yazılımının kurulması
+
+```
+   sudo add-apt-repository ppa:certbot/certbot  # Onaylamak için ENTER'a basılmalı.
+   sudo apt-get update                          # Ubuntu paket listesini güncelleme.
+   sudo apt-get install python-certbot-nginx    # Certbox'un Nginx paketinin yüklenmesi.
+```
+
+2.
+
+```
+server {
+    listen 80;
+    server_name aslanbaris.com www.aslanbaris.com;
+
+    location / {
+	return 302 https://$host$request_uri;
+    }
+}
+
+server {
+
+    listen 443 default ssl;
+
+    ssl_certificate /etc/letsencrypt/live/aslanbaris.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/aslanbaris.com/privkey.pem;
+    ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers         HIGH:!aNULL:!MD5;
+
+    client_max_body_size 5M;
+    server_name www.aslanbaris.com;
+    access_log /var/log/nginx/access.log;
+    error_log /var/log/nginx/error.log;
+
+    location /.well-known {
+        alias /var/www/cert/.well-known;
+    }
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+
+    location /static/ {
+        root /home/baris/blog;
+    }
+
+    location /media/ {
+        root /home/baris/blog;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/baris/blog/blog.sock;
+    }
+}
 ```
 
 **Kaynak:** https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
