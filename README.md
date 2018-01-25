@@ -148,6 +148,22 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
   pip install gunicorn psycopg2
 ```
 
+**Not:** Projenin settings.py dosyasının dizin hiyerarşisi aşağıdaki gibidir:
+
+```
+/home/baris/eventhub/
+		    /accounts/		
+		    /event/
+		    /eventhub/
+		   	     /__init__.py	
+			     /settings.py
+			     /urls.py
+			     /wsgi.py
+		    /notification/
+		    /static/
+		    /templates/
+```
+
 ### [Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#production)
 
 #### `setting.py` Dosyasındaki Ayarlar
@@ -346,7 +362,37 @@ server {
 
 ### [Yayın ve Geliştirme Ortamları İçin Ayrı Ayar Dosyaları](#seperate-settings)
 
-1.
+1. /home/baris/eventhub/eventhub klasörü içinde (settings.py dosyasının bulunduğu dizin) *settings* adında bir Python Paketi (içinde __init__.py dosyası bulunan bir klasör) oluşturulur.
+
+2. settings.py dosyası yeni oluşturulan pakete taşınır ve adı `base.py` olarak değiştirilir.
+
+3. *settings* paketinin içinde `development.py` ve `production.py` dosyaları oluşturulur. Her iki dosyanın en başında base.py dosyası import edilir (```python from eventhub.settings.base import *```).
+
+4. base.py'de ki ortama bağlı ifadeler çıkarılarak ilgili ortamların settings dosyalarında ayrı ayrı değerler olarak yazılır.
+
+5. `manage.py` ve `wsgi.py` dosyalarında her iki ortamdaki ilgili settings dosyalarının konumu verilir.
+
+6. `manage.py` ve `wsgi.py` dosyaları versiyon kontrol sistemi tarafından takip edilmemesi sağlanır (git için adları .gitignore dosyasına yazılır).
+
+7. Projenin dizin hiyerarşisi:
+
+```
+/home/baris/eventhub/
+		    /accounts/		
+		    /event/
+		    /eventhub/
+		   	     /__init__.py	
+			     /settings/
+			     	      /__init__.py	
+				      /base.py
+				      /development.py
+				      /production.py
+			     /urls.py
+			     /wsgi.py
+		    /notification/
+		    /static/
+		    /templates/
+```
 
 ### [SSL Sertifikası Temin Etme](#ssl)
 
