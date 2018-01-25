@@ -300,22 +300,22 @@ WantedBy=multi-user.target
    **Dosyanın içinde bulunması gerekenler:**
 
 ```
-   server {
-       listen 80;
-       server_name alan_adi_veya_IP;
-       root /home/baris/eventhub;
+server {
+    listen 80;
+    server_name alan_adi_veya_IP;
+    root /home/baris/eventhub;
 
-       location /static/ {
-       }
+    location /static/ {
+    }
 
-       location /media/ {
-       }
+    location /media/ {
+    }
 
-       location / {
-          include proxy_params;
-          proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
-       }
-   }
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
+    }
+}
 ```
 
 **Not:** Dosyayı kaydetmek için `CTRL + X` yaptıktan sonra `y` harfine basıp, `enter` tuşuna basılmalı.
@@ -344,6 +344,10 @@ WantedBy=multi-user.target
    sudo ufw delete allow 8000
    sudo ufw allow 'Nginx Full'
 ```
+
+### [Yayın ve Geliştirme Ortamları İçin Ayrı Ayar Dosyaları](#seperate-settings)
+
+1.
 
 ### [SSL Sertifikası Temin Etme](#ssl)
 
