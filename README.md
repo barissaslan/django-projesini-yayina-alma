@@ -342,7 +342,7 @@ WantedBy=multi-user.target
 
 ```
    sudo ufw delete allow 8000
-   sudo ufw allow 'Nginx Full
+   sudo ufw allow 'Nginx Full'
 ```
 
 ### [SSL Sertifikası Temin Etme](#ssl)
