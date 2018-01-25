@@ -367,7 +367,7 @@ server {
 
 2. settings.py dosyası yeni oluşturulan pakete taşınır ve adı `base.py` olarak değiştirilir.
 
-3. *settings* paketinin içinde `development.py` ve `production.py` dosyaları oluşturulur. Her iki dosyanın en başında base.py dosyası import edilir (```python from eventhub.settings.base import *```).
+3. *settings* paketinin içinde `development.py` ve `production.py` dosyaları oluşturulur. Her iki dosyanın en başında base.py dosyası import edilir (`from eventhub.settings.base import *`).
 
 4. base.py'de ki ortama bağlı ifadeler çıkarılarak ilgili ortamların settings dosyalarında ayrı ayrı değerler olarak yazılır.
 
