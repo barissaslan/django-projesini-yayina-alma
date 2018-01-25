@@ -162,6 +162,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 		    /notification/
 		    /static/
 		    /templates/
+		    . . .
 ```
 
 ### [Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#production)
@@ -362,7 +363,7 @@ server {
 
 ### [Yayın ve Geliştirme Ortamları İçin Ayrı Ayar Dosyaları](#seperate-settings)
 
-1. /home/baris/eventhub/eventhub klasörü içinde (settings.py dosyasının bulunduğu dizin) *settings* adında bir Python Paketi (içinde __init__.py dosyası bulunan bir klasör) oluşturulur.
+1. /home/baris/eventhub/eventhub klasörü içinde (settings.py dosyasının bulunduğu dizin) *settings* adında bir Python Paketi (içinde \_\_init\_\_.py dosyası bulunan bir klasör) oluşturulur.
 
 2. settings.py dosyası yeni oluşturulan pakete taşınır ve adı `base.py` olarak değiştirilir.
 
@@ -392,6 +393,7 @@ server {
 		    /notification/
 		    /static/
 		    /templates/
+		    . . .
 ```
 
 ### [SSL Sertifikası Temin Etme](#ssl)
