@@ -9,6 +9,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 İçindekiler
 
 - [Linux Kullanıcı Oluşturma](#linux-kullanıcı-oluşturma)
+- [Temel Güvenlik Duvarı Ayarları](#temel-güvenlik-duvarı-ayarları)
 - [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](python3-postgresql-ve-nginx-bileşenlerinin-yüklenmesi)
 - [PostgreSQL Yapılandırması](#postgresql-yapılandırması)
 - [Proje için Python Sanal Ortamın (Virtual Environment) ve Bağımlılıkların Yüklenmesi](#proje-için-python-sanal-ortamın-virtual-environment-ve-bağımlılıkların-yüklenmesi)
@@ -398,6 +399,45 @@ server {
         include proxy_params;
         proxy_pass http://unix:/home/baris/blog/blog.sock;
     }
+}
+
+
+server {
+        listen 80;
+        server_name aslanbaris.com www.aslanbaris.com;
+        location / {
+        return 302 https://$host$request_uri;
+    }
+}
+
+server {
+       listen 443 default ssl;
+       server_name aslanbaris.com www.aslanbaris.com;
+
+       ssl_certificate /etc/letsencrypt/live/aslanbaris.com/fullchain.pem;
+       ssl_certificate_key /etc/letsencrypt/live/aslanbaris.com/privkey.pem;
+       ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
+ssl_ciphers         HIGH:!aNULL:!MD5;
+
+       client_max_body_size 5M;
+       access_log /var/log/nginx/access.log;
+       error_log /var/log/nginx/error.log;
+
+       location /.well-known {
+           alias /var/www/cert/.well-known;
+       }
+
+       root /home/baris/eventhub;
+
+       location /static/ {
+	}
+
+       location /media/ {
+       }
+        location / {
+          include proxy_params;
+          proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
+       }
 }
 ```
 
