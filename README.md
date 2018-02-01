@@ -6,7 +6,8 @@ Kullanılan teknolojiler : **Ubuntu 16.04, Nginx, Gunicorn, PostgreSQL**
 
 Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
-İçindekiler
+
+**İçindekiler**
 
 - [Ubuntu Başlangıç Yapılandırması](#ubuntu-başlangıç-yapılandırması)
 	- [Linux Kullanıcı Oluşturma](#linux-kullanıcı-oluşturma)
