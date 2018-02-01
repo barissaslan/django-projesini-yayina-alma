@@ -453,9 +453,16 @@ server {
 
 5. `manage.py` ve `wsgi.py` dosyalarında her iki ortamdaki ilgili settings dosyalarının konumu verilir.
 
-6. `manage.py` ve `wsgi.py` dosyaları versiyon kontrol sistemi tarafından takip edilmemesi sağlanır (git için adları .gitignore dosyasına yazılır).
+6. Git sisteminde bulunan mevcut dosyaları silme.
 
-7. Projenin dizin hiyerarşisi:
+```
+   git rm --cached manage.py
+   git rm --cached eventhub/wsgi.py
+```
+
+7. `manage.py` ve `wsgi.py` dosyaları versiyon kontrol sistemi tarafından takip edilmemesi sağlanır (git için adları .gitignore dosyasına yazılır).
+
+8. Projenin dizin hiyerarşisi:
 
 ```
 /home/baris/eventhub/
@@ -500,15 +507,16 @@ server {
 
 server {
 
-    listen 443 default ssl;
-
-    ssl_certificate /etc/letsencrypt/live/aslanbaris.com/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/aslanbaris.com/privkey.pem;
+    listen 443 ssl;
+    server_name alan_adınız;
+    
+    ssl_certificate /etc/letsencrypt/live/alan_adınız/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/alan_adınız/privkey.pem;
     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers         HIGH:!aNULL:!MD5;
 
     client_max_body_size 5M;
-    server_name www.aslanbaris.com;
+    
     access_log /var/log/nginx/access.log;
     error_log /var/log/nginx/error.log;
 
@@ -518,59 +526,24 @@ server {
 
     location = /favicon.ico { access_log off; log_not_found off; }
 
+    root /home/baris/blog;
+    
     location /static/ {
-        root /home/baris/blog;
     }
 
     location /media/ {
-        root /home/baris/blog;
     }
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/baris/blog/blog.sock;
+        proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
     }
-}
-
-
-server {
-        listen 80;
-        server_name aslanbaris.com www.aslanbaris.com;
-        location / {
-        return 302 https://$host$request_uri;
-    }
-}
-
-server {
-       listen 443 default ssl;
-       server_name aslanbaris.com www.aslanbaris.com;
-
-       ssl_certificate /etc/letsencrypt/live/aslanbaris.com/fullchain.pem;
-       ssl_certificate_key /etc/letsencrypt/live/aslanbaris.com/privkey.pem;
-       ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-ssl_ciphers         HIGH:!aNULL:!MD5;
-
-       client_max_body_size 5M;
-       access_log /var/log/nginx/access.log;
-       error_log /var/log/nginx/error.log;
-
-       location /.well-known {
-           alias /var/www/cert/.well-known;
-       }
-
-       root /home/baris/eventhub;
-
-       location /static/ {
-	}
-
-       location /media/ {
-       }
-        location / {
-          include proxy_params;
-          proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
-       }
 }
 ```
 
-**Kaynak:** https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
+**Kaynaklar:** 
+
+[1] https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
+
+[2] https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-16-04
 
