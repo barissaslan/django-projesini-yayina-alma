@@ -8,20 +8,28 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
 İçindekiler
 
-- [Linux Kullanıcı Oluşturma](#linux-kullanıcı-oluşturma)
-- [Temel Güvenlik Duvarı Ayarları](#temel-güvenlik-duvarı-ayarları)
-- [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](python3-postgresql-ve-nginx-bileşenlerinin-yüklenmesi)
-- [PostgreSQL Yapılandırması](#postgresql-yapılandırması)
-- [Proje için Python Sanal Ortamın (Virtual Environment) ve Bağımlılıkların Yüklenmesi](#proje-için-python-sanal-ortamın-virtual-environment-ve-bağımlılıkların-yüklenmesi)
-- [Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#django-uygulamasıyla-ilgili-yayın-ortamı-production-environment-ayarları)
-- [Projeyi Django'nun Geliştirme Sunucusuyla Test Etme](#projeyi-djangonun-geliştirme-sunucusuyla-test-etme)
-- [Gunicorn](#gunicorn)
-- [Nginx Yapılandırması](#nginx-yapılandırması)
-
+- [Ubuntu Başlangıç Yapılandırması](#ubuntu-başlangıç-yapılandırması)
+	- [Linux Kullanıcı Oluşturma](#linux-kullanıcı-oluşturma)
+	- [SSH Yapılandırması](#ssh-yapılandırması)
+	    - [Anahtar Uretimi ve Kullanımı](#anahtar-uretimi-ve-kullanımı)
+	    - [Parolaya Dayalı Kimlik Doğrulamayı Kapatmak](#parolaya-dayalı-kimlik-doğrulamayı-kapatmak)
+	- [Temel Güvenlik Duvarı Ayarları](#temel-güvenlik-duvarı-ayarları)
+	
+- [Django Yayın Ortamı Yapılandırması](#django-yayın-ortamı-yapılandırması)
+	- [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](python3-postgresql-ve-nginx-bileşenlerinin-yüklenmesi)
+	- [PostgreSQL Yapılandırması](#postgresql-yapılandırması)
+	- [Proje için Python Sanal Ortamın (Virtual Environment) ve Bağımlılıkların Yüklenmesi](#proje-için-python-sanal-ortamın-virtual-environment-ve-bağımlılıkların-yüklenmesi)
+	- [Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#django-uygulamasıyla-ilgili-yayın-ortamı-production-environment-ayarları)
+	- [Projeyi Django'nun Geliştirme Sunucusuyla Test Etme](#projeyi-djangonun-geliştirme-sunucusuyla-test-etme)
+	- [Gunicorn](#gunicorn)
+	- [Nginx Yapılandırması](#nginx-yapılandırması)
+	
 - [SSL Sertifakası Temin Etme](#ssl-sertifikası-temin-etme)
 
 
-## [Linux Kullanıcı Oluşturma](#linux)
+## [Ubuntu Başlangıç Yapılandırması](#ubuntu)
+
+### [Linux Kullanıcı Oluşturma](#linux)
 
 1. Kullanıcı Oluşturma
 
@@ -34,6 +42,74 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 ```
    usermod -aG sudo kullanici_adi
 ```
+
+### [SSH Yapılandırması](#ssh)
+
+#### [Anahtar Uretimi ve Kullanımı](#anahtar)
+
+1. (Yerel bilgisayarda yapılacak) SSH Anahtarı üretme:
+
+```
+   ssh-keygen
+```
+
+2. (Yerel bilgisayarda yapılacak) Public Anahtarı görüntüleme:
+
+```
+   cat ~/.ssh/id_rsa.pub
+```
+
+3. (Sunucuda yapılacak) Root kullanıcısından normal kullanıcıya geçiş yapma:
+
+```
+   su - kullanici_adi
+```
+
+4. (Sunucuda yapılacak) Yeni kullanıcı için `.ssh` klasörünün oluşturulması ve klasöre kısıtlı izin verilmesi:
+
+```
+   mkdir ~/.ssh
+   chmod 700 ~/.ssh 
+```
+
+5. (Sunucuda yapılacak) `.ssh` klasöründe `authorized_keys` dosyasını oluşturma ve açma:
+
+```
+   nano ~/.ssh/authorized_keys
+   
+   # Yerel bilgisayardan kopyalanan public key yapıştırılarak CTRL + X kombinasyonunun ardından 'y' tuşuna basılıp, 'Enter' tuşlanarak dosya kaydedilir.
+```
+
+6. (Sunucuda yapılacak) `.ssh` klasörünün yazma iznini kısıtlamak:
+
+```
+   chmod 600 ~/.ssh/authorized_keys
+```
+
+#### [Parolaya Dayalı Kimlik Doğrulamayı Kapatmak](#password-auth)
+
+1. (Sunucuda yapılacak) SSH konfigürasyon dosyasını açma:
+
+```
+   sudo nano /etc/ssh/sshd_config
+```
+
+2. (Sunucuda yapılacak) Dosya içerisinde ki bazı ifadelerin alması gereken değerler:
+
+```
+   PasswordAuthentication no 
+   PubkeyAuthentication yes
+   ChallengeResponseAuthentication no
+   
+   # CTRL + X kombinasyonunun ardından 'y' tuşuna basılıp, 'Enter' tuşlanarak dosya kaydedilir.
+```
+
+3. (Sunucuda yapılacak) SSH Servisini yeniden başlatma:
+
+```
+   sudo systemctl reload sshd
+```
+
 
 ### Temel Güvenlik Duvarı Ayarları
 
@@ -54,6 +130,9 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 ```
    sudo ufw status
 ```
+
+
+## [Django Yayın Ortamı Yapılandırması](#django-yayın)
 
 ### [Python3, PostgreSQL ve Nginx bileşenlerinin yüklenmesi](#kurulum)
 
