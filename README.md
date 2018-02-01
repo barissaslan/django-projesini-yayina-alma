@@ -112,7 +112,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 ```
 
 
-### Temel Güvenlik Duvarı Ayarları
+### [Temel Güvenlik Duvarı Ayarları](#temel-guvenlik)
 
 1. Güvenlik duvarında SSH'a izin verme
 
