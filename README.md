@@ -493,12 +493,26 @@ server {
    sudo apt-get install python-certbot-nginx    # Certbox'un Nginx paketinin yüklenmesi.
 ```
 
-2.
+2. SSL Sertifikası Temini
+
+```
+   sudo certbot --nginx -d example.com -d www.example.com
+```
+
+**Not:** 2. Adımdaki komut hata verirse 3. adımdaki komut denenmelidir. Hatanın sebebi bir güvenlik açığının tespiti sebebiyle Let's Encrypt, Certbot servisini geçici süreyle kapalı tutmaktadır. Aşağıdaki alternatif denenmelidir.
+
+3. Alternatif komut
+
+```
+   sudo certbot --authenticator standalone --installer nginx --pre-hook "service nginx stop" --post-hook "service nginx start"
+```
+
+4. Nginx yapılandırma dosyasının genel yapısı aşağıdaki gibi olmalıdır.
 
 ```
 server {
     listen 80;
-    server_name aslanbaris.com www.aslanbaris.com;
+    server_name alan_adınız www.alan_adınız; # server_name aslanbaris.com www.aslanbaris.com
 
     location / {
 	return 302 https://$host$request_uri;
@@ -508,10 +522,10 @@ server {
 server {
 
     listen 443 ssl;
-    server_name alan_adınız;
+    server_name www.alan_adınız;  # www tercihe bağlıdır.
     
-    ssl_certificate /etc/letsencrypt/live/alan_adınız/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/alan_adınız/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/www.alan_adınız/fullchain.pem;    # Certbot yazılımından seçilen domain adı yazılmalıdır.
+    ssl_certificate_key /etc/letsencrypt/live/www.alan_adınız/privkey.pem;  # Certbot yazılımından seçilen domain adı yazılmalıdır.
     ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
     ssl_ciphers         HIGH:!aNULL:!MD5;
 
@@ -524,9 +538,9 @@ server {
         alias /var/www/cert/.well-known;
     }
 
-    location = /favicon.ico { access_log off; log_not_found off; }
+    location = /favicon.ico { access_log off; log_not_found off; }  # Sitenin tarayıcıda gözüken iconu
 
-    root /home/baris/blog;
+    root /home/kullanıcı_adı/proje_adı;  # root /home/baris/eventhub
     
     location /static/ {
     }
@@ -536,7 +550,8 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
+        proxy_pass http://unix:/home/kullanıcı_adı/proje_adı/proje_adı.sock; # proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
+	
     }
 }
 ```
