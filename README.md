@@ -461,9 +461,7 @@ server {
 
 5. `base.py`'de ki ortama bağlı ifadeler çıkarılarak ilgili ortamların settings dosyalarında ayrı ayrı değerler olarak yazılır.
 
-6. `wsgi.py` dosyasında settings konumu olarak production dosyası verilir (`eventhub.settings.production`).
-
-7. İlgili settings dosyalarının sanal ortam tarafından bulunması için her iki ortamın `activate` dosyasının (`venv/bin/activate`) sonuna şu ifadeler eklenir.
+6. İlgili settings dosyalarının sanal ortam tarafından bulunması için her iki ortamın `activate` dosyasının (`venv/bin/activate`) sonuna şu ifadeler eklenir.
 
 ```
    # Geliştirme ortamındaki venv/bin/activate dosyası açılarak sonuna şu ifadeler eklenir:
@@ -474,6 +472,8 @@ server {
    DJANGO_SETTINGS_MODULE="eventhub.settings.production"
    export DJANGO_SETTINGS_MODULE
 ```
+
+7. `wsgi.py` dosyasında settings konumu olarak production dosyası verilir (`eventhub.settings.production`).
 
 8. Projenin dizin hiyerarşisi:
 
