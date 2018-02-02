@@ -24,6 +24,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 	- [Projeyi Django'nun Geliştirme Sunucusuyla Test Etme](#projeyi-djangonun-geliştirme-sunucusuyla-test-etme)
 	- [Gunicorn](#gunicorn)
 	- [Nginx Yapılandırması](#nginx-yapılandırması)
+	- [Yayın ve Geliştirme Ortamları İçin Ayrı Ayar Dosyaları](#yayın-ve-geliştirme-ortamları-için-ayrı-ayar-dosyaları)
 	
 - [SSL Sertifakası Temin Etme](#ssl-sertifikası-temin-etme)
 
