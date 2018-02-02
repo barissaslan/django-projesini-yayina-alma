@@ -24,7 +24,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 	- [Projeyi Django'nun Geliştirme Sunucusuyla Test Etme](#projeyi-djangonun-geliştirme-sunucusuyla-test-etme)
 	- [Gunicorn](#gunicorn)
 	- [Nginx Yapılandırması](#nginx-yapılandırması)
-	- [Yayın ve Geliştirme Ortamları İçin Ayrı Ayar Dosyaları](#yayın-ve-geliştirme-ortamları-için-ayrı-ayar-dosyaları)
+	- [Yayın ve Geliştirme Ortamları için Ayrı Ayar Dosyaları](#yayın-ve-geliştirme-ortamları-için-ayrı-ayar-dosyaları)
 	
 - [SSL Sertifakası Temin Etme](#ssl-sertifikası-temin-etme)
 
@@ -442,7 +442,7 @@ server {
    sudo ufw allow 'Nginx Full'
 ```
 
-### [Yayın ve Geliştirme Ortamları İçin Ayrı Ayar Dosyaları](#seperate-settings)
+### [Yayın ve Geliştirme Ortamları için Ayrı Ayar Dosyaları](#seperate-settings)
 
 1. `settings.py` dosyasının bulunduğu dizinde (`/home/baris/eventhub/eventhub` klasörü içinde ) *settings* adında bir Python Paketi (içinde \_\_init\_\_.py dosyası bulunan bir klasör) oluşturulur.
 
