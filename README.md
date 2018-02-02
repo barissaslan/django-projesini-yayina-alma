@@ -35,13 +35,13 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 1. Kullanıcı Oluşturma
 
 ```
-   adduser kullanici_adi
+   adduser kullanici_adi  # adduser baris
 ```
    
 2. Oluşturulan yeni kullanıcıya sudo (yönetici) yetkisi verme
 
 ```
-   usermod -aG sudo kullanici_adi
+   usermod -aG sudo kullanici_adi  # usermod -aG sudo baris
 ```
 
 ### [SSH Yapılandırması](#ssh)
@@ -63,7 +63,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 3. (Sunucuda yapılacak) Root kullanıcısından normal kullanıcıya geçiş yapma:
 
 ```
-   su - kullanici_adi
+   su - kullanici_adi  # su - baris
 ```
 
 4. (Sunucuda yapılacak) Yeni kullanıcı için `.ssh` klasörünün oluşturulması ve klasöre kısıtlı izin verilmesi:
@@ -153,7 +153,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 2. Projenin kullanacağı veritabanını oluşturma
 
 ```sql
-  CREATE DATABASE proje_adi;
+  CREATE DATABASE proje_adi;  
 ```
 
 3. Projenin kullanacağı veritabanı kullanıcısını oluşturma
@@ -399,7 +399,7 @@ WantedBy=multi-user.target
 server {
     listen 80;
     server_name alan_adi_veya_IP;
-    root /home/baris/eventhub;
+    root /home/baris/eventhub; # Projenin kök dizini
 
     location /static/ {
     }
@@ -409,7 +409,7 @@ server {
 
     location / {
         include proxy_params;
-        proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;
+        proxy_pass http://unix:/home/baris/eventhub/eventhub.sock;  # Projenin kök dizinindeki 'proje_adı.sock' dosyası
     }
 }
 ```
@@ -443,24 +443,36 @@ server {
 
 ### [Yayın ve Geliştirme Ortamları İçin Ayrı Ayar Dosyaları](#seperate-settings)
 
-1. /home/baris/eventhub/eventhub klasörü içinde (settings.py dosyasının bulunduğu dizin) *settings* adında bir Python Paketi (içinde \_\_init\_\_.py dosyası bulunan bir klasör) oluşturulur.
+1. `settings.py` dosyasının bulunduğu dizinde (`/home/baris/eventhub/eventhub` klasörü içinde ) *settings* adında bir Python Paketi (içinde \_\_init\_\_.py dosyası bulunan bir klasör) oluşturulur.
 
 2. settings.py dosyası yeni oluşturulan pakete taşınır ve adı `base.py` olarak değiştirilir.
 
 3. *settings* paketinin içinde `development.py` ve `production.py` dosyaları oluşturulur. Her iki dosyanın en başında base.py dosyası import edilir (`from eventhub.settings.base import *`).
 
-4. base.py'de ki ortama bağlı ifadeler çıkarılarak ilgili ortamların settings dosyalarında ayrı ayrı değerler olarak yazılır.
-
-5. `manage.py` ve `wsgi.py` dosyalarında her iki ortamdaki ilgili settings dosyalarının konumu verilir.
-
-6. Git sisteminde bulunan mevcut dosyaları silme.
+4. `base.py` dosyasının proje dizinini yanlış hesaplamaması için `BASE_DIR` ifadesi şu şekilde değiştirilir:
 
 ```
-   git rm --cached manage.py
-   git rm --cached eventhub/wsgi.py
+   # Önce
+   BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+   # Sonra
+   BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ```
 
-7. `manage.py` ve `wsgi.py` dosyaları versiyon kontrol sistemi tarafından takip edilmemesi sağlanır (git için adları .gitignore dosyasına yazılır).
+5. `base.py`'de ki ortama bağlı ifadeler çıkarılarak ilgili ortamların settings dosyalarında ayrı ayrı değerler olarak yazılır.
+
+6. `wsgi.py` dosyasında settings konumu olarak production dosyası verilir (`eventhub.settings.production`).
+
+7. İlgili settings dosyalarının sanal ortam tarafından bulunması için her iki ortamın `activate` dosyasının (`venv/bin/activate`) sonuna şu ifadeler eklenir.
+
+```
+   # Geliştirme ortamındaki venv/bin/activate dosyası açılarak sonuna şu ifadeler eklenir:
+   DJANGO_SETTINGS_MODULE="eventhub.settings.development"
+   export DJANGO_SETTINGS_MODULE
+   
+   # Yayın ortamındaki venv/bin/activate dosyası açılarak sonuna şu ifadeler eklenir:
+   DJANGO_SETTINGS_MODULE="eventhub.settings.production"
+   export DJANGO_SETTINGS_MODULE
+```
 
 8. Projenin dizin hiyerarşisi:
 
@@ -496,7 +508,7 @@ server {
 2. SSL Sertifikası Temini
 
 ```
-   sudo certbot --nginx -d example.com -d www.example.com
+   sudo certbot --nginx -d alan_adı -d www.alan_adı
 ```
 
 **Not:** 2. Adımdaki komut hata verirse 3. adımdaki komut denenmelidir. Hatanın sebebi bir güvenlik açığının tespiti sebebiyle Let's Encrypt, Certbot servisini geçici süreyle kapalı tutmaktadır. Aşağıdaki alternatif denenmelidir.
