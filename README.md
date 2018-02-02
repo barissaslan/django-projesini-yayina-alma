@@ -569,6 +569,20 @@ server {
 }
 ```
 
+5. Django Production Settings dosyasına eklenmesi gerekenler:
+
+```
+   SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+   SECURE_SSL_REDIRECT = True
+   SESSION_COOKIE_SECURE = True
+   CSRF_COOKIE_SECURE = True
+```
+6. Nginx sunucusunu yeniden başlatma:
+
+```
+   sudo systemctl restart nginx
+```
+
 **Kaynaklar:** 
 
 [1] https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04
