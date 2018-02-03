@@ -17,7 +17,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 	- [Temel Güvenlik Duvarı Ayarları](#temel-güvenlik-duvarı-ayarları)
 	
 - [Django Yayın Ortamı Yapılandırması](#django-yayın-ortamı-yapılandırması)
-	- [Python3, PostgreSQL ve Nginx bileşenlerinin yuklenmesi](python3-postgresql-ve-nginx-bileşenlerinin-yuklenmesi)
+	- [Python3 PostgreSQL ve Nginx bileşenlerinin yuklenmesi](python3-postgresql-ve-nginx-bileşenlerinin-yuklenmesi)
 	- [PostgreSQL Yapılandırması](#postgresql-yapılandırması)
 	- [Proje için Python Sanal Ortamın (Virtual Environment) ve Bağımlılıkların Yüklenmesi](#proje-için-python-sanal-ortamın-virtual-environment-ve-bağımlılıkların-yüklenmesi)
 	- [Django Uygulamasıyla ilgili Yayın Ortamı (Production Environment) Ayarları](#django-uygulamasıyla-ilgili-yayın-ortamı-production-environment-ayarları)
@@ -136,7 +136,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
 ## [Django Yayın Ortamı Yapılandırması](#django-yayın)
 
-### [Python3, PostgreSQL ve Nginx bileşenlerinin yuklenmesi](#kurulum)
+### [Python3 PostgreSQL ve Nginx bileşenlerinin yuklenmesi](#kurulum)
 
 ```
   sudo apt-get update
