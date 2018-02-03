@@ -136,7 +136,7 @@ Dersler YouTube'da ücretsiz olarak yayımlanmaktadır.
 
 ## [Django Yayın Ortamı Yapılandırması](#django-yayın)
 
-### [Python3 PostgreSQL ve Nginx bileşenlerinin yuklenmesi](#kurulum)
+### [Python3, PostgreSQL ve Nginx bileşenlerinin yuklenmesi](#kurulum)
 
 ```
   sudo apt-get update
