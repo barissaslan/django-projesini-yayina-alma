@@ -556,8 +556,6 @@ server {
         alias /var/www/cert/.well-known;
     }
 
-    location = /favicon.ico { access_log off; log_not_found off; }  # Sitenin tarayıcıda gözüken iconu
-
     root /home/kullanıcı_adı/proje_adı;  # root /home/baris/eventhub
     
     location /static/ {
