@@ -520,7 +520,12 @@ server {
    sudo certbot --authenticator standalone --installer nginx --pre-hook "service nginx stop" --post-hook "service nginx start"
 ```
 
-4. Nginx yapılandırma dosyasının genel yapısı aşağıdaki gibi olmalıdır.
+4. Nginx yapılandırma dosyası açılır:
+
+```
+   sudo nano /etc/nginx/sites-available/eventhub
+```
+5. Nginx yapılandırma dosyasının genel yapısı aşağıdaki gibi olmalıdır.
 
 ```
 server {
